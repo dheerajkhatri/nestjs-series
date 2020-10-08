@@ -8,15 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const post_module_1 = require("./post-feature/post.module");
+const post_module_1 = require("./post/post.module");
 const config_1 = require("@nestjs/config");
 const Joi = require("@hapi/joi");
 const database_module_1 = require("./database.module");
+const category_module_1 = require("./category/category.module");
+const user_module_1 = require("./user/user.module");
+const address_module_1 = require("./address/address.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
-        imports: [post_module_1.PostModule,
+        imports: [
+            post_module_1.PostModule,
+            category_module_1.CategoryModule,
+            user_module_1.default,
+            address_module_1.default,
+            database_module_1.DatabaseModule,
             config_1.ConfigModule.forRoot({
                 validationSchema: Joi.object({
                     POSTGRES_HOST: Joi.string().required(),
@@ -25,9 +33,13 @@ AppModule = __decorate([
                     POSTGRES_PASSWORD: Joi.string().required(),
                     POSTGRES_DB: Joi.string().required(),
                     PORT: Joi.number(),
+                    AWS_REGION: Joi.string().required(),
+                    AWS_ACCESS_KEY_ID: Joi.string().required(),
+                    AWS_SECRET_ACCESS_KEY: Joi.string().required(),
+                    AWS_BUCKET_NAME: Joi.string().required(),
                 })
-            }),
-            database_module_1.DatabaseModule],
+            })
+        ],
         controllers: [],
         providers: [],
     })
