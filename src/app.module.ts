@@ -6,6 +6,7 @@ import {DatabaseModule} from "./database.module";
 import {CategoryModule} from "./category/category.module";
 import UserModule from "./user/user.module";
 import AddressModule from "./address/address.module";
+import FileModule from "./s3-files-app/file.module";
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import AddressModule from "./address/address.module";
         UserModule,
         AddressModule,
         DatabaseModule,
+        FileModule,
         ConfigModule.forRoot({
             validationSchema: Joi.object({
                 POSTGRES_HOST: Joi.string().required(),

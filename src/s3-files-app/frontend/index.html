@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+</head>
+<script>
+    const process = async () => {
+        const selectedFile = document.getElementById('input').files[0];
+        console.log(selectedFile);
+        const response = await fetch('http://localhost:3000/files', {
+            method: 'POST',
+            body: selectedFile, // string or object
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
+        const myJson = await response.json();
+    }
+</script>
+<body>
+<form action="http://localhost:3000/files" method="post" enctype="multipart/form-data">
+    <div class="sub-main" style="text-align:center">
+        <input type="file" name="file">
+    </div>
+    <div class="sub-main">
+        <button class="button-two" type="submit"><span>Yay!</span></button>
+    </div>
+</form>
+
+</body>
+</html>

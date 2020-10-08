@@ -5,3 +5,4 @@ node_modules
 dist/*
 aws-s3-keys.txt
 .env
+package-lock.json
